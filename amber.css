@@ -143,19 +143,18 @@ img { display: block; width: 100%; object-fit: cover; }
 .aint-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 220px 220px 180px;
+  grid-template-rows: 220px 220px 220px;
   gap: 12px;
 }
 .aint-img {
   border-radius: 8px; overflow: hidden;
   opacity: 0; transform: scale(.97); transition: opacity .5s, transform .5s;
 }
-.aint-img img { height: 100%; }
+.aint-img img { height: 100%; object-fit: cover; }
 .aint-img.avisible { opacity: 1; transform: scale(1); }
-/* Big image: col 1, rows 1-2 */
-.aint-img.big { grid-column: 1; grid-row: 1 / span 2; }
-/* 6th image: spans cols 2-3, row 3 */
-.aint-img.wide { grid-column: 2 / span 2; grid-row: 3; }
+/* Big image spans 2 columns & 2 rows (4 cells total) */
+.aint-img.big { grid-column: span 2; grid-row: span 2; }
+/* Remaining 5 images auto-fill the remaining 5 cells forming an L-shape! */
 
 /* ─── FLOOR PLANS ─── */
 #aplans { padding: 100px 0; background: #f8f8f8; }

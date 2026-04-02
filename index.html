@@ -146,7 +146,7 @@
       <img src="/images/interior/int3.jpg" alt="Interjers 3" class="aint-img">
       <img src="/images/interior/int4.jpg" alt="Interjers 4" class="aint-img">
       <img src="/images/interior/int5.jpg" alt="Interjers 5" class="aint-img">
-      <img src="/images/interior/int6.jpg" alt="Interjers 6" class="aint-img wide">
+      <img src="/images/interior/int6.jpg" alt="Interjers 6" class="aint-img">
     </div>
   </div>
 </section>
@@ -361,6 +361,43 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('avisible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.aspec-item, .aint-img, .aplan-wrap, .abuilding-gallery').forEach(el => observer.observe(el));
+
+// STATS COUNT UP
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const stats = entry.target.querySelectorAll('.ahero-stat strong');
+      stats.forEach(stat => {
+        const target = stat.innerText;
+        if (target === 'A') return; // Skip letter
+        
+        const targetNum = parseInt(target);
+        if (isNaN(targetNum)) return;
+        
+        let startCount = 0;
+        const duration = 2000;
+        const steps = 60;
+        const stepTime = Math.abs(Math.floor(duration / steps));
+        const increment = targetNum / steps;
+        
+        stat.innerText = '0';
+        
+        const timer = setInterval(() => {
+          startCount += increment;
+          if (startCount >= targetNum) {
+            stat.innerText = targetNum;
+            clearInterval(timer);
+          } else {
+            stat.innerText = Math.floor(startCount);
+          }
+        }, stepTime);
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+const statsContainer = document.querySelector('.ahero-stats');
+if (statsContainer) statsObserver.observe(statsContainer);
 </script>
 </body>
 </html>
