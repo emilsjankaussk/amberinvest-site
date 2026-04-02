@@ -279,10 +279,10 @@ img { display: block; width: 100%; object-fit: cover; }
   #aintgallery h2 { font-size: 30px; }
   .aint-grid {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 200px 200px 200px;
+    grid-template-rows: auto;
   }
-  .aint-img.big { grid-column: 1 / span 2; grid-row: 1; }
-  .aint-img.wide { grid-column: 1 / span 2; grid-row: auto; }
+  .aint-img { height: 260px; }
+  .aint-img.big { grid-column: 1 / span 2; height: 350px; }
 
   /* Plans */
   #aplans { padding: 72px 0; }
@@ -325,7 +325,7 @@ img { display: block; width: 100%; object-fit: cover; }
     grid-template-rows: auto;
     gap: 8px;
   }
-  .aint-img, .aint-img.big, .aint-img.wide {
+  .aint-img, .aint-img.big {
     grid-column: auto; grid-row: auto;
     height: 220px;
   }
